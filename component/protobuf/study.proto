@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package=".;protobuf";
+
+//protoc -I=. study.proto --go_out=paths=source_relative:gen study.proto
+//protoc -I=. --go_out=plugins=grpc,paths=source_relative:gen study.proto
+
+import "google/protobuf/timestamp.proto";
+
+enum Sys {
+    Unknown = 0;
+    IOS  = 1;
+    Android = 2;
+}
+
+message Location {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message StudyRequest {
+    string name = 1; //1 是参数编号
+    Location location = 2;
+    repeated Location path = 3;
+    Sys sys = 4;
+}
+
+message StudyResponse {
+    int32 sys = 1;
+    //map <string, string> mp = 2; //第一个string是 key 类型 第二个string是value类型，对于客户端来说是个黑盒，尽量不用map
+    google.protobuf.Timestamp addTime = 2;
+}
+
+service StudyService {
+    rpc Get(StudyRequest) returns (StudyResponse);
+}

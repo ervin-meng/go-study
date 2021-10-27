@@ -1,0 +1,6 @@
+name: 'study_server'
+host: '127.0.0.01'
+port: '9500'
+mysql:
+  host: '127.0.0.1'
+  port: '3306'
