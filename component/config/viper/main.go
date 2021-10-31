@@ -20,7 +20,7 @@ type StudyServerConfig struct {
 
 func main() {
 	v := viper.New()
-	v.SetConfigFile("../config/config.yaml")
+	v.SetConfigFile("config.yaml")
 	if err := v.ReadInConfig(); err != nil {
 		panic(err)
 	}

@@ -18,7 +18,7 @@ func main() {
 func zapLogFile() (*zap.Logger, error) {
 	cfg := zap.NewDevelopmentConfig()
 	cfg.OutputPaths = []string{
-		"./logger/zap.log",
+		"./log/zap.log",
 		"stderr",
 	}
 	return cfg.Build()

@@ -22,6 +22,14 @@ import (
 //服务注销
 //put http://127.0.0.1:8500/v1/agent/service/deregister/api-user
 
+func main() {
+	err := consulRegister("192.168.0.102", 8501, "api-user", []string{"api", "user"}, "api-user")
+	if err != nil {
+		panic(err)
+	}
+	//consulDiscover()
+}
+
 func consulRegister(address string, port int, name string, tags []string, id string) error {
 
 	check := &api.AgentServiceCheck{

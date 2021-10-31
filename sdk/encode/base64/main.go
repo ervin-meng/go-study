@@ -1,11 +1,11 @@
-package main
+package base64
 
 import (
 	"encoding/base64"
 	"fmt"
 )
 
-func StudyBase64() {
+func main() {
 	rawStr := "zheshiyigezifuchuan"
 	base64Str := base64.StdEncoding.EncodeToString([]byte(rawStr))
 	fmt.Println(base64Str)

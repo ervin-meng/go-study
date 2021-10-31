@@ -7,7 +7,7 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/vo"
 )
 
-func studyNacos() {
+func main() {
 
 	sc := []constant.ServerConfig{
 		{
@@ -20,8 +20,8 @@ func studyNacos() {
 		NamespaceId:         "fe281935-c397-40f7-8fb2-4de3f88c6357",
 		TimeoutMs:           5000,
 		NotLoadCacheAtStart: true,
-		LogDir:              "component/distribute/config/tmp/nacos/log",
-		CacheDir:            "component/distribute/config/tmp/nacos/cache",
+		LogDir:              "component/distribute/config/nacos/log",
+		CacheDir:            "component/distribute/config/nacos/cache",
 		RotateTime:          "1h",
 		MaxAge:              3,
 		LogLevel:            "debug",

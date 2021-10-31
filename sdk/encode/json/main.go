@@ -14,7 +14,7 @@ func (r *rawData) MarshalJSON() ([]byte, error) {
 	return []byte(nil), nil
 }
 
-func StudyJson() {
+func main() {
 	raw1Data := rawData{"data"}
 	json1Data, _ := json.Marshal(raw1Data)
 	fmt.Println(string(json1Data), raw1Data)
