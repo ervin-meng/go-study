@@ -5,7 +5,7 @@ import (
 )
 
 type seqListElement struct {
-	Value interface{}
+	data interface{}
 }
 
 type SeqList struct {
@@ -17,8 +17,8 @@ func NewSeqList(elements ...interface{}) SeqList {
 
 	l := SeqList{nil, 0}
 
-	for _, value := range elements {
-		l.elements = append(l.elements, seqListElement{Value: value})
+	for _, data := range elements {
+		l.elements = append(l.elements, seqListElement{data: data})
 		l.length++
 	}
 
@@ -55,12 +55,12 @@ func (l *SeqList) Length() int {
 	return l.length
 }
 
-func (l *SeqList) Append(value interface{}) {
-	l.elements = append(l.elements, seqListElement{Value: value})
+func (l *SeqList) Append(data interface{}) {
+	l.elements = append(l.elements, seqListElement{data: data})
 	l.length++
 }
 
-func (l *SeqList) Insert(index int, value interface{}) error {
+func (l *SeqList) Insert(index int, data interface{}) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
@@ -69,7 +69,7 @@ func (l *SeqList) Insert(index int, value interface{}) error {
 	newElements := make([]seqListElement, 1+l.length)
 
 	copy(newElements, l.elements[:index])
-	copy(newElements[index:], []seqListElement{{Value: value}})
+	copy(newElements[index:], []seqListElement{{data: data}})
 	copy(newElements[index+1:], l.elements[index:])
 
 	l.elements = newElements
@@ -90,13 +90,13 @@ func (l *SeqList) Delete(index int) error {
 	return nil
 }
 
-func (l *SeqList) Update(index int, value interface{}) error {
+func (l *SeqList) Update(index int, data interface{}) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
 	}
 
-	l.elements[index] = seqListElement{Value: value}
+	l.elements[index] = seqListElement{data: data}
 
 	return nil
 }
@@ -107,5 +107,5 @@ func (l *SeqList) Get(index int) (interface{}, error) {
 		return nil, err
 	}
 
-	return l.elements[index].Value, nil
+	return l.elements[index].data, nil
 }

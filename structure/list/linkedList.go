@@ -5,9 +5,9 @@ import (
 )
 
 type linkedListElement struct {
-	next  *linkedListElement
-	prev  *linkedListElement
-	value interface{}
+	next *linkedListElement
+	prev *linkedListElement
+	data interface{}
 }
 
 type linkedList struct {
@@ -22,19 +22,19 @@ func NewLinkedList(elements ...interface{}) linkedList {
 
 	node := &linkedListElement{}
 
-	for key, value := range elements {
+	for key, data := range elements {
 		if key == 0 {
 			l.head = &linkedListElement{
-				next:  nil,
-				prev:  nil,
-				value: value,
+				next: nil,
+				prev: nil,
+				data: data,
 			}
 			node = l.head
 		} else {
 			node.next = &linkedListElement{
-				next:  nil,
-				prev:  node,
-				value: value,
+				next: nil,
+				prev: node,
+				data: data,
 			}
 			node = node.next
 		}
@@ -93,13 +93,13 @@ func (l *linkedList) Length() int {
 	return l.length
 }
 
-func (l *linkedList) Append(value interface{}) {
-	newNode := &linkedListElement{prev: l.tail, next: nil, value: value}
+func (l *linkedList) Append(data interface{}) {
+	newNode := &linkedListElement{prev: l.tail, next: nil, data: data}
 	l.tail = newNode
 	l.length++
 }
 
-func (l *linkedList) Insert(index int, value interface{}) error {
+func (l *linkedList) Insert(index int, data interface{}) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
@@ -107,7 +107,7 @@ func (l *linkedList) Insert(index int, value interface{}) error {
 
 	node := l.locateElement(index)
 
-	newNode := &linkedListElement{node, nil, value}
+	newNode := &linkedListElement{node, nil, data}
 
 	if index == 0 {
 		l.head = newNode
@@ -149,14 +149,14 @@ func (l *linkedList) Delete(index int) error {
 	return nil
 }
 
-func (l *linkedList) Update(index int, value interface{}) error {
+func (l *linkedList) Update(index int, data interface{}) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
 	}
 
 	node := l.locateElement(index)
-	node.value = value
+	node.data = data
 
 	return nil
 }
@@ -169,7 +169,7 @@ func (l *linkedList) Get(index int) (interface{}, error) {
 
 	node := l.locateElement(index)
 
-	return node.value, nil
+	return node.data, nil
 }
 
 func (l *linkedList) Scan() []interface{} {
@@ -178,7 +178,7 @@ func (l *linkedList) Scan() []interface{} {
 	node := l.head
 
 	for node != nil {
-		result = append(result, node.value)
+		result = append(result, node.data)
 		node = node.next
 	}
 
