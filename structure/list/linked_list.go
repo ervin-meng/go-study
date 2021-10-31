@@ -4,34 +4,34 @@ import (
 	"errors"
 )
 
-type linkedListElement struct {
-	next *linkedListElement
-	prev *linkedListElement
+type LinkedListElement struct {
+	next *LinkedListElement
+	prev *LinkedListElement
 	data interface{}
 }
 
-type linkedList struct {
+type LinkedList struct {
 	length int
-	head   *linkedListElement
-	tail   *linkedListElement
+	head   *LinkedListElement
+	tail   *LinkedListElement
 }
 
-func NewLinkedList(elements ...interface{}) linkedList {
+func NewLinkedList(elements ...interface{}) LinkedList {
 
-	l := linkedList{0, nil, nil}
+	l := LinkedList{0, nil, nil}
 
-	node := &linkedListElement{}
+	node := &LinkedListElement{}
 
 	for key, data := range elements {
 		if key == 0 {
-			l.head = &linkedListElement{
+			l.head = &LinkedListElement{
 				next: nil,
 				prev: nil,
 				data: data,
 			}
 			node = l.head
 		} else {
-			node.next = &linkedListElement{
+			node.next = &LinkedListElement{
 				next: nil,
 				prev: node,
 				data: data,
@@ -46,7 +46,7 @@ func NewLinkedList(elements ...interface{}) linkedList {
 	return l
 }
 
-func (l *linkedList) checkIndex(index int) error {
+func (l *LinkedList) checkIndex(index int) error {
 
 	if index < 0 {
 		return errors.New("index不能小于0")
@@ -59,7 +59,7 @@ func (l *linkedList) checkIndex(index int) error {
 	return nil
 }
 
-func (l *linkedList) locateElement(index int) *linkedListElement {
+func (l *LinkedList) locateElement(index int) *LinkedListElement {
 	if index == 0 {
 		return l.head
 	} else if index == l.length-1 {
@@ -75,13 +75,13 @@ func (l *linkedList) locateElement(index int) *linkedListElement {
 	}
 }
 
-func (l *linkedList) Clear() {
+func (l *LinkedList) Clear() {
 	l.length = 0
 	l.head = nil
 	l.tail = nil
 }
 
-func (l *linkedList) IsEmpty() bool {
+func (l *LinkedList) IsEmpty() bool {
 	if l.length == 0 {
 		return true
 	} else {
@@ -89,17 +89,17 @@ func (l *linkedList) IsEmpty() bool {
 	}
 }
 
-func (l *linkedList) Length() int {
+func (l *LinkedList) Length() int {
 	return l.length
 }
 
-func (l *linkedList) Append(data interface{}) {
-	newNode := &linkedListElement{prev: l.tail, next: nil, data: data}
+func (l *LinkedList) Append(data interface{}) {
+	newNode := &LinkedListElement{prev: l.tail, next: nil, data: data}
 	l.tail = newNode
 	l.length++
 }
 
-func (l *linkedList) Insert(index int, data interface{}) error {
+func (l *LinkedList) Insert(index int, data interface{}) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
@@ -107,7 +107,7 @@ func (l *linkedList) Insert(index int, data interface{}) error {
 
 	node := l.locateElement(index)
 
-	newNode := &linkedListElement{node, nil, data}
+	newNode := &LinkedListElement{node, nil, data}
 
 	if index == 0 {
 		l.head = newNode
@@ -125,7 +125,7 @@ func (l *linkedList) Insert(index int, data interface{}) error {
 	return nil
 }
 
-func (l *linkedList) Delete(index int) error {
+func (l *LinkedList) Delete(index int) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
@@ -149,7 +149,7 @@ func (l *linkedList) Delete(index int) error {
 	return nil
 }
 
-func (l *linkedList) Update(index int, data interface{}) error {
+func (l *LinkedList) Update(index int, data interface{}) error {
 
 	if err := l.checkIndex(index); err != nil {
 		return err
@@ -161,7 +161,7 @@ func (l *linkedList) Update(index int, data interface{}) error {
 	return nil
 }
 
-func (l *linkedList) Get(index int) (interface{}, error) {
+func (l *LinkedList) Get(index int) (interface{}, error) {
 
 	if err := l.checkIndex(index); err != nil {
 		return nil, err
@@ -172,7 +172,7 @@ func (l *linkedList) Get(index int) (interface{}, error) {
 	return node.data, nil
 }
 
-func (l *linkedList) Scan() []interface{} {
+func (l *LinkedList) Scan() []interface{} {
 	var result []interface{}
 
 	node := l.head

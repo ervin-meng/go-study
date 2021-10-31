@@ -1,6 +1,6 @@
-package list
+package abstrct
 
-type List interface {
+type IList interface {
 	Clear()
 	IsEmpty() bool
 	Length() int
