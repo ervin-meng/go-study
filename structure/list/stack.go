@@ -1,5 +1,7 @@
 package list
 
+import "errors"
+
 type Stack struct {
 	elements []interface{}
 	length   int
@@ -18,11 +20,14 @@ func (s *Stack) Push(data interface{}) {
 	s.length++
 }
 
-func (s *Stack) Pop() interface{} {
+func (s *Stack) Pop() (interface{}, error) {
+	if s.IsEmpty() {
+		return nil, errors.New("下溢操作")
+	}
 	data := s.elements[s.length-1]
 	s.elements = s.elements[:s.length-1]
 	s.length--
-	return data
+	return data, nil
 }
 
 func (s *Stack) Length() int {
