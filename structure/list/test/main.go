@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	testSeqList()
-	testLinkedList()
+	//testQueue()
+	testStack()
 }
 
 func testSeqList() {
@@ -35,4 +35,30 @@ func testLinkedList() {
 	err = l.Update(0, 1.1)
 	fmt.Println(err, l.Scan())
 	fmt.Println(l.Get(1))
+}
+
+func testQueue() {
+	q := list.NewQueue(1, 2)
+	fmt.Println(q)
+	fmt.Println(q.Length())
+	fmt.Println(q.IsEmpty())
+	fmt.Println(q.Dequeue())
+	fmt.Println(q)
+	q.Enqueue(3)
+	q.Enqueue(4)
+	fmt.Println(q)
+}
+
+func testStack() {
+	s := list.NewStack(1, 2)
+	fmt.Println(s)
+	fmt.Println(s.Length())
+	fmt.Println(s.IsEmpty())
+	fmt.Println(s.Pop())
+	fmt.Println(s)
+	s.Push(3)
+	s.Push(4)
+	fmt.Println(s)
+	s.Clear()
+	fmt.Println(s)
 }
