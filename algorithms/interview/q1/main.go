@@ -2,8 +2,8 @@ package main
 
 import "go-study/structure/list"
 
+//校验输入的字符串中括号是否闭合匹配
 func main() {
-	//校验输入的字符串中括号是否闭合匹配
 	str := "abc{{dddaaddd]cc}"
 
 	stack := list.NewStack()

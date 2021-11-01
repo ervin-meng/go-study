@@ -46,7 +46,8 @@ func PreOrderTraversal(t *BinaryTree) {
 func PreOrderTraversalPro(t *BinaryTree) {
 	s := list.NewStack(t)
 	for !s.IsEmpty() {
-		node := s.Pop().(*BinaryTree)
+		inode, _ := s.Pop()
+		node := inode.(*BinaryTree)
 		fmt.Println(node.Data)
 		if node.Right != nil {
 			s.Push(node.Right)
