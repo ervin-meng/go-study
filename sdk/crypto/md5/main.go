@@ -3,17 +3,16 @@ package main
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"fmt"
 	"io"
 )
 
 func main() {
-	StudyMd5("学习MD5")
-}
-
-func StudyMd5(raw string) string {
 	md5Obj := md5.New()
 
-	_, _ = io.WriteString(md5Obj, raw)
+	_, _ = io.WriteString(md5Obj, "这一个字符串")
 
-	return hex.EncodeToString(md5Obj.Sum(nil))
+	hexStr := hex.EncodeToString(md5Obj.Sum(nil))
+
+	fmt.Println(hexStr)
 }
