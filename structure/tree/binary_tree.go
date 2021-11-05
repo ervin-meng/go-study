@@ -23,11 +23,11 @@ func newBinaryTree(data interface{}) *BinaryTree {
 	}
 }
 
-func (t *BinaryTree) AddLeftNode(data interface{}) {
+func (t *BinaryTree) InsertLeft(data interface{}) {
 	t.Left = newBinaryTree(data)
 }
 
-func (t *BinaryTree) AddRightNode(data interface{}) {
+func (t *BinaryTree) InsertRight(data interface{}) {
 	t.Right = newBinaryTree(data)
 }
 
