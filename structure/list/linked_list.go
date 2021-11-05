@@ -2,6 +2,7 @@ package list
 
 import (
 	"errors"
+	"fmt"
 )
 
 type LinkedListElement struct {
@@ -172,15 +173,18 @@ func (l *LinkedList) Get(index int) (interface{}, error) {
 	return node.data, nil
 }
 
-func (l *LinkedList) Scan() []interface{} {
-	var result []interface{}
-
+func (l *LinkedList) Scan() string {
+	result := ""
 	node := l.head
 
 	for node != nil {
-		result = append(result, node.data)
+		result = fmt.Sprintf("%s%s", result, node.data)
 		node = node.next
 	}
 
 	return result
+}
+
+func (l *LinkedList) String() string {
+	return l.Scan()
 }
