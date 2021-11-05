@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func init() {
+	fmt.Println("学习常量")
 }
 
 func main() {
